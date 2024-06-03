@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:5000/api'; // Replace with your actual backend URL
+const API_BASE_URL = "http://localhost:5000/api"; // Replace with your actual backend URL
 
 const getToken = () => {
   // Retrieve the token from local storage or any other secure storage
-  return localStorage.getItem('user');
+  return localStorage.getItem("user");
 };
 
 const getUserLists = async () => {
@@ -20,9 +20,9 @@ const getPublicLists = async () => {
     headers: { Authorization: `${token}` },
   });
   return response.data;
-}
+};
 const createList = async (name, movies, isPublic, thumbnail) => {
-  console.log(name, movies, isPublic)
+  console.log(name, movies, isPublic);
   const token = getToken();
   const response = await axios.post(
     `${API_BASE_URL}/movieLists/create`,

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import MovieListService from '../services/movieListService';
+import { useState, useEffect } from "react";
+import MovieListService from "../services/movieListService";
 
 const AddToListModal = ({ movie, lists, onClose, onAddToListSuccess }) => {
-  const [selectedList, setSelectedList] = useState('');
+  const [selectedList, setSelectedList] = useState("");
   const [creatingList, setCreatingList] = useState(false);
-  const [newListName, setNewListName] = useState('');
+  const [newListName, setNewListName] = useState("");
   const [isPublic, setIsPublic] = useState(true);
   const [isDuplicate, setIsDuplicate] = useState(false);
 
@@ -26,13 +26,24 @@ const AddToListModal = ({ movie, lists, onClose, onAddToListSuccess }) => {
       if (list) {
         list.movies.push(movie);
         if (list.movies.length === 1) {
-          list.thumbnail = movie.Poster; 
+          list.thumbnail = movie.Poster;
         }
-        await MovieListService.updateList(selectedList, list.name, list.movies, list.isPublic, list.thumbnail);
+        await MovieListService.updateList(
+          selectedList,
+          list.name,
+          list.movies,
+          list.isPublic,
+          list.thumbnail
+        );
       }
     } else if (!selectedList) {
-      const thumbnail = movie.Poster; 
-      const newList = await MovieListService.createList(newListName, [movie], isPublic, thumbnail);
+      const thumbnail = movie.Poster;
+      const newList = await MovieListService.createList(
+        newListName,
+        [movie],
+        isPublic,
+        thumbnail
+      );
       // Update the lists state with the new list
       onAddToListSuccess(newList);
     }
@@ -44,12 +55,17 @@ const AddToListModal = ({ movie, lists, onClose, onAddToListSuccess }) => {
   };
 
   const handleSaveList = async () => {
-    const thumbnail = movie.Poster; 
-    const newList = await MovieListService.createList(newListName, [movie], isPublic, thumbnail);
+    const thumbnail = movie.Poster;
+    const newList = await MovieListService.createList(
+      newListName,
+      [movie],
+      isPublic,
+      thumbnail
+    );
     // Update the lists state with the new list
     onAddToListSuccess(newList);
     setCreatingList(false);
-    setNewListName('');
+    setNewListName("");
     setIsPublic(true);
     setSelectedList(newList._id);
   };
@@ -82,10 +98,12 @@ const AddToListModal = ({ movie, lists, onClose, onAddToListSuccess }) => {
               onClick={handleAddToList}
               disabled={isDuplicate}
               className={`w-full p-2 rounded ${
-                isDuplicate ? 'bg-gray-500 text-white' : 'bg-green-500 text-white hover:bg-green-600'
+                isDuplicate
+                  ? "bg-gray-500 text-white"
+                  : "bg-green-500 text-white hover:bg-green-600"
               }`}
             >
-              {isDuplicate ? 'Already Exists' : 'Add'}
+              {isDuplicate ? "Already Exists" : "Add"}
             </button>
           </>
         ) : (
