@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    AuthService.getCurrentUser() ? (
+    
     <nav className="bg-violet-950 z-50 relative top-0 text-white p-4 flex justify-between items-center shadow-lg">
       <div className="flex text-xl items-center space-x-4">
         <Link to="/home" className="hover:text-gray-400">Home</Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
           </Link>
         )}
       </div>
-    </nav>) : (<nav className="bg-violet-950 text-white p-4 flex justify-between items-center shadow-lg"></nav>)
+    </nav>
   );
 };
 
