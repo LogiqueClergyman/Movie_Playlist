@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://movie-plylistserver-9xoi053co-logiqueclergymans-projects.vercel.app/api"; // Replace with your actual backend URL
+const API_BASE_URL = "https://movie-plylistserver-c37llfv3y-logiqueclergymans-projects.vercel.app/api"; // Replace with your actual backend URL
 
 const getToken = () => {
   // Retrieve the token from local storage or any other secure storage
