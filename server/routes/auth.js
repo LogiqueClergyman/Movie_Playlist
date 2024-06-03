@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../model/User');
+const User = require('../model/user.js');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
@@ -7,11 +7,14 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   console.log("HI");
   const { username, password } = req.body;
+  console.log(req.body)
   try {
     const user = await User.create({ username, password });
+    console.log(User)
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.status(201).json({ token });
   } catch (err) {
+    console.log(err)
     res.status(400).json({ error: 'User registration failed', request: req.body });
   }
 });

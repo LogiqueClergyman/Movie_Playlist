@@ -1,5 +1,5 @@
 const express = require("express");
-const MovieList = require("../model/MovieList");
+const MovieList = require("../model/movieList.js");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const dotenv = require("dotenv");
